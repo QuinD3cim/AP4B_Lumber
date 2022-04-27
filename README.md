@@ -8,7 +8,7 @@ Lumber idle game for Object Oriented Programmation course
 
 ### Sujet
 
-Faire un "Idle game" où l'on gêre une petite scierie et dont l'objectif est de s'étendre pour servir plus de clients et gagner plus d'argent.
+Faire un "Idle game" où l'on gère une petite scierie et dont l'objectif est de s'étendre pour servir plus de clients et gagner plus d'argent.
 
 &nbsp;
 
