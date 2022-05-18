@@ -1,5 +1,5 @@
 package lumber_jack.model;
 
-public class Model {
+public class IndustryModel {
     
 }

@@ -1,5 +1,5 @@
 package lumber_jack.controller;
 
-public class Controller {
+public class MoneyController {
     
 }
