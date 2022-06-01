@@ -1,13 +1,12 @@
 package lumber_jack.controller;
 
-import lumber_jack.model.Product;
 import java.util.ArrayList;
 
 public class RessourceController {
     
     ArrayList<Product> ressourceList;
 
-    public RessourceController() 
+    public RessourceController()
     {
         ressourceList = new ArrayList<>(1);
     }
@@ -17,22 +16,12 @@ public class RessourceController {
     {
         for (int i = 0; i<this.getRessourceSize(); i++)
         {
-            if(this.getRessource(i).getType().equals(name))
+            if(this.getRessource(i).name.equals(name))
             {
                 return i;
             }
         }
         return -1;
-    }
-
-    // Change the quantity of the ressource
-    public void changeRessource(String name, int quantity)
-    {
-        int n = 0;
-        if ((n=findProduct(name)) != -1)
-        {
-            this.getRessource(n).changeStock(quantity);
-        }
     }
 
     // Creates a ressource and adds it to the ressource list
@@ -53,4 +42,16 @@ public class RessourceController {
         return ressourceList.size();
     }
 
+    public class Product{
+        public String name;
+        public float sellingPrice;
+        public int quantity;
+
+        public Product(String name, float sellingPrice)
+        {
+            this.name = name;
+            this.sellingPrice = sellingPrice;
+            this.quantity = 0;
+        }
+    }
 }

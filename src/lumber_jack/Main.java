@@ -23,13 +23,13 @@ public class Main {
 
         JFrame game = new JFrame("LumberJack");
         game.setLayout(new GridBagLayout());
-        
-        
+
+
         game.setSize(size);
 
         RessourcePanel ressources = new RessourcePanel(size);
         ForestController forestController = new ForestController(size);
-        
+
         game.add(ressources, createSideMenuConstraints(size));
         game.add(forestController.getPanel(),createMainPanelConstraints(size));
 
