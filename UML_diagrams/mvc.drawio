@@ -1,0 +1,73 @@
+<mxfile host="65bd71144e">
+    <diagram id="N_0-JiyQYjn5KMMiRtbR" name="Page-1">
+        <mxGraphModel dx="1135" dy="536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="View" style="swimlane;startSize=0;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="360" width="360" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="ForestPanel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="2" vertex="1">
+                    <mxGeometry x="10" y="40" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="FactoryPanel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="2" vertex="1">
+                    <mxGeometry x="130" y="40" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="MachinePanel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="2" vertex="1">
+                    <mxGeometry x="250" y="40" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="MoneyPanel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="2" vertex="1">
+                    <mxGeometry x="10" y="100" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="RessourcePanel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="2" vertex="1">
+                    <mxGeometry x="130" y="100" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="UpgradePanel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="2" vertex="1">
+                    <mxGeometry x="250" y="100" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="MenuPanel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="2" vertex="1">
+                    <mxGeometry x="130" y="160" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Controller" style="swimlane;startSize=0;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="360" width="240" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="ForestController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="10" vertex="1">
+                    <mxGeometry x="10" y="40" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="FactoryController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="10" vertex="1">
+                    <mxGeometry x="130" y="40" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="MachineController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="10" vertex="1">
+                    <mxGeometry x="130" y="100" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="UpgradeController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="10" vertex="1">
+                    <mxGeometry x="10" y="100" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="curved=1;endArrow=classic;html=1;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="410" as="sourcePoint"/>
+                        <mxPoint x="500" y="410" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="450" y="370"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="" style="curved=1;endArrow=classic;html=1;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="500" y="460" as="sourcePoint"/>
+                        <mxPoint x="400" y="460" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="450" y="500"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="Model" style="swimlane;startSize=0;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="220" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="IndustryModel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="17" vertex="1">
+                    <mxGeometry x="10" y="30" width="100" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
