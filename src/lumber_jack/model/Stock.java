@@ -4,6 +4,12 @@ public class Stock {
     protected String title;
     protected int currentValue;
 
+    public Stock(String title)
+    {
+        this.title = title;
+        currentValue = 0;
+    }
+
     public int getCurrentValue() {
         return currentValue;
     }
