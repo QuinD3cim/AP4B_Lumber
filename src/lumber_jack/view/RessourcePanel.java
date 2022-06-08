@@ -38,13 +38,21 @@ public class RessourcePanel extends JPanel{
         this.refreshView();
     }
 
-    private void updateRessource(String name, int quantity)
+    // Update the quantity of the ressource "name"
+    public void updateRessource(String name, int quantity)
     {
         controller.changeRessource(name, quantity);
         this.refreshView();
         
     }
 
+    // Returns the quantity of the ressource "name"
+    public int getRessourceQuantity(String name)
+    {
+        return controller.getRessource(name).getStock().getCurrentValue();
+    }
+
+    // Updates the labels to show the updated values
     private void refreshView(){
         int n = 0;
         for(Component jc : this.getComponents())

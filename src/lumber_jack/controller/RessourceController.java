@@ -1,6 +1,7 @@
 package lumber_jack.controller;
 
 import lumber_jack.model.Product;
+
 import java.util.ArrayList;
 
 public class RessourceController {
@@ -45,6 +46,11 @@ public class RessourceController {
     public Product getRessource(int n)
     {
         return ressourceList.get(n);
+    }
+
+    public Product getRessource(String name)
+    {
+        return ressourceList.get(this.findProduct(name));
     }
 
     // Returns the size of the ressource list

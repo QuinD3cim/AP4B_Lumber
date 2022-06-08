@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import lumber_jack.view.RessourcePanel;
+import lumber_jack.view.*;
 
 public class Main extends JFrame {
     public static void main(String[] args) 
@@ -26,10 +26,21 @@ public class Main extends JFrame {
         constraints.fill = GridBagConstraints.VERTICAL;
         constraints.gridx = 0;
         constraints.gridy = 0;
+        constraints.gridheight = 2;
         constraints.anchor = GridBagConstraints.FIRST_LINE_START;
         constraints.ipadx = size.width/5;
         constraints.ipady = size.height;
         game.add(ressources, constraints);
+
+        UpgradePanel upgrades = new UpgradePanel(size,ressources);
+        constraints.weighty = 0.5;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.FIRST_LINE_START;
+        constraints.ipadx = size.width;
+        constraints.ipady = size.height/5;
+        game.add(upgrades, constraints);
         
 
         game.setVisible(true);
