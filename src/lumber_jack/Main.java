@@ -30,6 +30,7 @@ public class Main extends JFrame {
         constraints.ipadx = size.width/5;
         constraints.ipady = size.height;
         game.add(ressources, constraints);
+        
 
         game.setVisible(true);
 
