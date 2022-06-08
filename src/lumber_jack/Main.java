@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import lumber_jack.controller.MenuController;
 import lumber_jack.model.IndustryModel;
+import lumber_jack.view.MenuView;
 
 public class Main extends JFrame {
     public static void main(String[] args) {
@@ -13,9 +14,7 @@ public class Main extends JFrame {
     }
 
     public Main() {
-        new IndustryModel();
-        new MenuController();
-        setMinimumSize(new Dimension(800, 800));
-        setVisible(true);
+        MenuView menu = new MenuView();
+        menu.TitleScreen();
     }
 }
