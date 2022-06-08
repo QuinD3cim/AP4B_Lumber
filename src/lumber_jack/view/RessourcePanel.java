@@ -26,7 +26,7 @@ public class RessourcePanel extends JPanel{
     }
 
     // Makes a ressource and adds it to the Ressource panel
-    private void addResource(String name, float price)
+    public void addResource(String name, float price)
     {
         controller.makeRessource(name, price);
         JLabel label = new JLabel();

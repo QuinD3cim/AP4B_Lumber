@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
@@ -23,8 +24,8 @@ public class Main {
 
         JFrame game = new JFrame("LumberJack");
         game.setLayout(new GridBagLayout());
-
-
+        GridBagConstraints constraints = new GridBagConstraints();
+        
         game.setSize(size);
 
         RessourcePanel ressources = new RessourcePanel(size);
