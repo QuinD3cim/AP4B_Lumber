@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import lumber_jack.controller.FactoryController;
 import lumber_jack.controller.ForestController;
 import lumber_jack.controller.MenuController;
 import lumber_jack.model.IndustryModel;
@@ -29,10 +30,12 @@ public class Main {
         game.setSize(size);
 
         RessourcePanel ressources = new RessourcePanel(size);
-        ForestController forestController = new ForestController(size);
+        //ForestController forestController = new ForestController(size);
+        FactoryController factoryController= new FactoryController(size);
 
         game.add(ressources, createSideMenuConstraints(size));
-        game.add(forestController.getPanel(),createMainPanelConstraints(size));
+        //game.add(forestController.getPanel(),createMainPanelConstraints(size));
+        game.add(factoryController.getPanel(),createMainPanelConstraints(size));
 
         game.setVisible(true);
 
