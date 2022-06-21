@@ -36,32 +36,38 @@ public class MachinePanel extends JPanel {
         //System.out.println(gteWidth());
 
 
-        JPanel machines = new JPanel();
-        machines.setLayout(new GridLayout(2, 2));
+        //JPanel machines = new JPanel();
+        //machines.setLayout(new GridLayout(2, 2));
         JFrame machineFrame = new JFrame("Machine");
-        JButton one = new JButton("Buy machine 1");
-        JButton two = new JButton("Buy machine 2");
-        JButton three = new JButton("Buy machine 3");
-        JButton four = new JButton("Buy machine 4");
-        machines.add(one);
-        machines.add(two);
-        machines.add(three);
-        machines.add(four);
+        
+        //JButton one = new JButton("Buy machine 1");
+        //JButton two = new JButton("Buy machine 2");
+        //JButton three = new JButton("Buy machine 3");
+        //JButton four = new JButton("Buy machine 4");
+        
+        //machines.add(one);
+        //machines.add(two);
+        //machines.add(three);
+        //machines.add(four);
+        
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        
         int hauteur= (int)size.getHeight()/2;
         int largeur = (int)size.getWidth()/2;
+        
+        //machineFrame.add(machines);
+        
         machineFrame.setSize(largeur,hauteur);
         machineFrame.setVisible(true);
-        machines
+        
 
         machineFrame.setBackground(Color.lightGray);
         GridLayout machineLayout = new GridLayout(2,2);
 
         machineFrame.setLayout(machineLayout);
 
-        //grid = new ForestGrid(getPreferredSize());
         //this.add(grid,BorderLayout.CENTER);
-        //createMachineGrid(machineFrame);
+        createMachineGrid(machineFrame);
 
     }
 
@@ -69,19 +75,25 @@ public class MachinePanel extends JPanel {
     protected void createMachineGrid(JFrame machinegrid){
         for (int row = 0; row < 2; row++) {
             for (int col = 0; col < 2; col++) {
+                JPanel machinePanel = new JPanel();
                 JLabel machinePlot = new JLabel(row+";"+col);
+                JButton buyMachine = new JButton("Buy Machine " +row +" "+col);
+                
+                machinePanel.add(machinePlot);
+                machinePanel.add(buyMachine);
 
                 machinePlot.setBackground(Color.LIGHT_GRAY);
                 machinePlot.setBorder(BorderFactory.createLineBorder(Color.black));
                 machinePlot.addMouseListener(new MachinePanel.GridMouseListener(col,row));
                 machinePlot.setPreferredSize(cellDim);
-                JButton buyMachine = new JButton("Buy Machine " +row +" "+col);
+                
                 GridBagConstraints c = new GridBagConstraints();
                 c.anchor = GridBagConstraints.CENTER;
+                
                 buyMachine.setPreferredSize(new Dimension(50, 50));
                 buyMachine.setVisible(true);
-                machinePlot.add(buyMachine);
-                machinegrid.add(machinePlot);
+                
+                machinegrid.add(machinePanel);
 
             }
         }
