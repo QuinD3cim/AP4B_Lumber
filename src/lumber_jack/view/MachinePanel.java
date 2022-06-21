@@ -35,21 +35,33 @@ public class MachinePanel extends JPanel {
         this.setBackground(Color.lightGray);
         //System.out.println(gteWidth());
 
-        JFrame machines = new JFrame("Machine");
+
+        JPanel machines = new JPanel();
+        machines.setLayout(new GridLayout(2, 2));
+        JFrame machineFrame = new JFrame("Machine");
+        JButton one = new JButton("Buy machine 1");
+        JButton two = new JButton("Buy machine 2");
+        JButton three = new JButton("Buy machine 3");
+        JButton four = new JButton("Buy machine 4");
+        machines.add(one);
+        machines.add(two);
+        machines.add(three);
+        machines.add(four);
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int hauteur= (int)size.getHeight()/2;
         int largeur = (int)size.getWidth()/2;
-        machines.setSize(largeur,hauteur);
-        machines.setVisible(true);
+        machineFrame.setSize(largeur,hauteur);
+        machineFrame.setVisible(true);
+        machines
 
-        machines.setBackground(Color.lightGray);
+        machineFrame.setBackground(Color.lightGray);
         GridLayout machineLayout = new GridLayout(2,2);
 
-        machines.setLayout(machineLayout);
+        machineFrame.setLayout(machineLayout);
 
         //grid = new ForestGrid(getPreferredSize());
         //this.add(grid,BorderLayout.CENTER);
-        createMachineGrid(machines);
+        //createMachineGrid(machineFrame);
 
     }
 
@@ -63,7 +75,12 @@ public class MachinePanel extends JPanel {
                 machinePlot.setBorder(BorderFactory.createLineBorder(Color.black));
                 machinePlot.addMouseListener(new MachinePanel.GridMouseListener(col,row));
                 machinePlot.setPreferredSize(cellDim);
-
+                JButton buyMachine = new JButton("Buy Machine " +row +" "+col);
+                GridBagConstraints c = new GridBagConstraints();
+                c.anchor = GridBagConstraints.CENTER;
+                buyMachine.setPreferredSize(new Dimension(50, 50));
+                buyMachine.setVisible(true);
+                machinePlot.add(buyMachine);
                 machinegrid.add(machinePlot);
 
             }
