@@ -17,9 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
+import lumber_jack.controller.ForestTileThread;
+
 public class ForestPlot {
     protected boolean isBought;
     protected float boughtPrice;
+    protected String currentAction;
+    protected int currentPercentage;
     
     protected ArrayList<Lumberjack> lumberjacksOnPlot;
     protected ArrayList<TreePlanter> treeplanterOnPlot;
@@ -37,6 +41,8 @@ public class ForestPlot {
 
         this.x = x;
         this.y = y;
+        currentAction = "cut";
+        currentPercentage = 0;
 
         treesOnPlot = new ArrayList<Tree>();
         lumberjacksOnPlot = new ArrayList<Lumberjack>();
@@ -48,11 +54,41 @@ public class ForestPlot {
             treesOnPlot.add(new Tree());
         }
         refreshButton();
+        new ForestTileThread(x, y, this).start();
     }
 
-    public void addLumberJackOnPlot(Lumberjack lumberjack) {
+    synchronized public ArrayList<Lumberjack> getLumberjacksOnPlot() {
+        return lumberjacksOnPlot;
+    }
+
+    synchronized public ArrayList<TreePlanter> getTreeplanterOnPlot() {
+        return treeplanterOnPlot;
+    }
+
+    synchronized public ArrayList<Tree> getTreesOnPlot() {
+        return treesOnPlot;
+    }
+
+    synchronized public void setCurrentAction(String action) {
+        currentAction = action;
+    }
+
+    synchronized public void setCurrentPercentage(int currentPercentage) {
+        this.currentPercentage = currentPercentage;
+    }
+
+    synchronized public void addLumberJackOnPlot(Lumberjack lumberjack) {
         lumberjacksOnPlot.add(lumberjack);
         refreshButton();
+    }
+
+    synchronized public Tree cutTree() {
+        treesOnPlot.get(0).cut();
+        return treesOnPlot.remove(0);
+    }
+
+    synchronized public void plantTree() {
+        treesOnPlot.add(new Tree());
     }
 
     public void moveLumberJack(ForestPlot plot) {
@@ -74,12 +110,12 @@ public class ForestPlot {
         refreshButton();
     }
 
-    public void refreshButton() {
+    synchronized public void refreshButton() {
         plotButton.setText(
             "<html><body>" +
             "lj : "+lumberjacksOnPlot.size() +
             "<br>tp : "+treeplanterOnPlot.size() +
-            "<br>cut : " + 0 + "%" +
+            "<br>" + currentAction + " " + currentPercentage + " %" +
             "</body></html>"
             );
     }
@@ -131,7 +167,10 @@ public class ForestPlot {
     }
 
     public void addPopupContent(Container container) {
+        container.add(new JLabel("Trees : "+treesOnPlot.size()));
         container.add(new JLabel("Lumberjacks :"));
+
+        
 
         for(int i = 0; i < lumberjacksOnPlot.size(); ++i) {
             JPanel lumberjackPanel = new JPanel();
