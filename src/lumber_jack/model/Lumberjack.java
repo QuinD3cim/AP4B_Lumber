@@ -27,6 +27,14 @@ public class Lumberjack extends Employee {
         efficiency = 0.5f;
     }
 
+    public float getEfficiency() {
+        return efficiency;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
     public void upgradeSpeed(float addToSpeed) {
         speed += addToSpeed;
     }

@@ -26,6 +26,13 @@ public class TreePlanter extends Employee{
         speed = 0.5f;
         efficiency =0.5f;
     }
+    public float getEfficiency() {
+        return efficiency;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
 
     public void upgradeSpeed(float addToSpeed) {
         speed += addToSpeed;
