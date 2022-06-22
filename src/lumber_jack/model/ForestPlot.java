@@ -137,13 +137,19 @@ public class ForestPlot {
             JPanel lumberjackPanel = new JPanel();
             lumberjackPanel.add(new JLabel("lumberjack "+i));
             JButton upgradeLumberjack = new JButton("upgrade");
+
+            Lumberjack selectedLumberjack = lumberjacksOnPlot.get(i);
+
             upgradeLumberjack.addActionListener(new ActionListener(){
+
+                Lumberjack linkedLumberjack = selectedLumberjack;
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    lumberjacksOnPlot.get(0).showStats();
+                    linkedLumberjack.showStats();
                 }
 
             });
+
             lumberjackPanel.add(upgradeLumberjack);
 
             JButton upButton = new JButton("^");
@@ -173,6 +179,7 @@ public class ForestPlot {
                 refresPopup(container);
             } 
         });
+
         container.add(addLumberJack);
 
         container.add(new JLabel("Treeplanters :"));
@@ -181,11 +188,16 @@ public class ForestPlot {
             JPanel treePlanterPanel = new JPanel();
             treePlanterPanel.add(new JLabel("tree planter "+i));
             JButton upgradeTreePlanter = new JButton("upgrade");
+
+            TreePlanter selectedTreePlanter = treeplanterOnPlot.get(i);
+
             upgradeTreePlanter.addActionListener(new ActionListener() {
+
+                TreePlanter linkedTreePlanter = selectedTreePlanter;
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //treeplanterOnPlot[i].                    
-                }    
+                    linkedTreePlanter.showStats();
+                }
             });
 
             treePlanterPanel.add(upgradeTreePlanter);
