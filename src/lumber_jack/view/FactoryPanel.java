@@ -7,7 +7,7 @@ import javax.swing.plaf.DimensionUIResource;
 
 import lumber_jack.controller.FactoryController;
 import lumber_jack.controller.MachineController;
-//import lumber_jack.controller.RessourceController;
+import lumber_jack.controller.RessourceController;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -22,10 +22,13 @@ public class FactoryPanel extends JPanel {
     private int cellSize = 0;
     Dimension cellDim = null;
     Dimension panelSize;
+    //RessourceController to give to the machines
+    private RessourcePanel ressource;
 
-    public FactoryPanel(Dimension parentSize, FactoryController controller)
+    public FactoryPanel(Dimension parentSize, FactoryController controller, RessourcePanel ressource)
     {
         this.controller = controller;
+        this.ressource=ressource;
         panelSize = new Dimension((int) parentSize.getWidth()*4/5,(int) parentSize.getHeight()*4/5);
         setSize(panelSize);
         cellSize = (int) Math.min(panelSize.getWidth(),panelSize.getHeight()) / Math.max(gridWidth,gridHeight);
@@ -85,7 +88,7 @@ public class FactoryPanel extends JPanel {
         @Override
         public void mousePressed(MouseEvent e) {
 
-            MachineController machineController = new MachineController(getParent().getSize());
+            MachineController machineController = new MachineController(getParent().getSize(),ressource);
 
 
 

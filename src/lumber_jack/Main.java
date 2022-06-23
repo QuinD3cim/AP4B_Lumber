@@ -31,7 +31,7 @@ public class Main {
 
         RessourcePanel ressources = new RessourcePanel(size);
         //ForestController forestController = new ForestController(size);
-        FactoryController factoryController= new FactoryController(size);
+        FactoryController factoryController= new FactoryController(size,ressources);
 
         game.add(ressources, createSideMenuConstraints(size));
         //game.add(forestController.getPanel(),createMainPanelConstraints(size));
