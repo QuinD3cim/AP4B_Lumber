@@ -12,6 +12,10 @@ public class Machine {
     private RessourcePanel ressource;
 
 
+    /**
+     * Constructor of the machine
+     * @param ressource - RessourcePanel linkedith the machine
+     */
     public Machine(RessourcePanel ressource){
         this.ressource = ressource;
         this.speed = 1f;
@@ -19,6 +23,9 @@ public class Machine {
         new MachineThread(this).start();
     }
 
+    /**
+     * Method to produce planks
+     */
     public void produce(){
         ressource.updateRessource("Wood", -1);
         ressource.updateRessource("Money", 7);
@@ -27,7 +34,8 @@ public class Machine {
 
     
     /** 
-     * @return int
+     * Getter of the upgradePrice
+     * @return int - upgradePrice
      */
     public int getPrice(){
         return upgradePrice;
@@ -35,7 +43,8 @@ public class Machine {
 
     
     /** 
-     * @return float
+     * Gette of the speed
+     * @return float - speed
      */
     public float getSpeed(){
         return this.speed;
@@ -43,13 +52,17 @@ public class Machine {
 
     
     /** 
-     * @param speedToAdd
+     * Speed modifier
+     * @param speedToAdd - float speed to add to speed
      */
     public void upgradeSpeed(float speedToAdd){
 
         this.speed += speedToAdd;
     }
 
+    /**
+     * give a level
+     */
     public void levelUp(){
         level++;
         upgradeSpeed(speed*(1+1/level));
