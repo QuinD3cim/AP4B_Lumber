@@ -2,14 +2,18 @@ package lumber_jack.controller;
 
 import lumber_jack.model.Product;
 
+import lumber_jack.view.RessourcePanel;
+
 import java.util.ArrayList;
 
 public class RessourceController {
     
-    ArrayList<Product> ressourceList;
+    static ArrayList<Product> ressourceList;
+    static RessourcePanel resourcePanel;
 
-    public RessourceController() 
+    public RessourceController(RessourcePanel resourcePanel) 
     {
+        RessourceController.resourcePanel = resourcePanel;
         ressourceList = new ArrayList<>(1);
     }
 
@@ -39,6 +43,15 @@ public class RessourceController {
         }
     }
 
+    static public void changeRessourceStatic(String name, int quantity)
+    {
+        try {
+            getStaticResource(name).changeStock(quantity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // Creates a ressource and adds it to the ressource list
     // - String name : name of the ressource
     // - float sellingPrice : selling price of the ressource
@@ -61,10 +74,23 @@ public class RessourceController {
         return ressourceList.get(this.findProduct(name));
     }
 
+    public static Product getStaticResource(String s) throws Exception {
+        for(Product product : ressourceList) {
+            if(s.equals(product.getType())){ 
+                return product;
+            }
+        }
+        throw new Exception("This resource do not exist");
+    }
+
     // Returns the size of the ressource list
     public int getRessourceSize()
     {
         return ressourceList.size();
+    }
+
+    public static RessourcePanel getRessourcePanel() {
+        return resourcePanel;
     }
 
 }
