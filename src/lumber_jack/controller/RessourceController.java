@@ -1,7 +1,6 @@
 package lumber_jack.controller;
 
 import lumber_jack.model.Product;
-
 import lumber_jack.view.RessourcePanel;
 
 import java.util.ArrayList;
