@@ -29,6 +29,11 @@ public class ForestPanel extends JPanel{
     Dimension cellDim = null;
     Dimension panelSize;
 
+    /** 
+     * Constructor of a forest panel inheriting from JPanel
+     * @param parentSize - Dimension of the parent (the JFrame)
+     * @param controller - the controller that generated this panel
+     */
     public ForestPanel(Dimension parentSize, ForestController controller)
     {
         this.controller = controller;
@@ -44,6 +49,9 @@ public class ForestPanel extends JPanel{
         
     }
 
+    /**
+     * Method to create the grid of button
+     */
     protected void createButtonGrid() {
             
         for (int row = 0; row < gridHeight; row++) {
