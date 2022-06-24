@@ -26,12 +26,11 @@ public class ForestTileThread extends Thread {
             int timeToCut = calculateTimeToCut(plot.getLumberjacksOnPlot(), plot.getTreesOnPlot());
             if(timeToCut != -1) {
                 plot.setCurrentAction("cut :");
-                float onePercentime = ((float) timeToCut)/100f;
                 int percentForTreeCut = 100/plot.getTreesOnPlot().size();
 
                 for(int i = 0; i < 100; ++i) {
                     try {
-                        Thread.sleep((int) onePercentime);
+                        Thread.sleep(calculateTimeToCut(plot.getLumberjacksOnPlot(), plot.getTreesOnPlot()));
                     } catch(Exception e) {}
 
                     if(i % percentForTreeCut == 0 && i != 0) {
@@ -45,12 +44,11 @@ public class ForestTileThread extends Thread {
             int timeToPlant = calculateTimeToPlant(plot.getTreeplanterOnPlot(),plot.getTreesOnPlot());
             if(timeToPlant != -1) {
                 plot.setCurrentAction("plant :");
-                float onePercentime = ((float) timeToPlant)/100f;
                 int percentForTreePlant = 100/5;
 
                 for(int i = 0; i < 100; ++i) {
                     try {
-                        Thread.sleep((int) onePercentime);
+                        Thread.sleep(calculateTimeToPlant(plot.getTreeplanterOnPlot(),plot.getTreesOnPlot()));
                     } catch(Exception e) {}
 
                     if(i % percentForTreePlant == 0 && i != 0) {
@@ -78,7 +76,7 @@ public class ForestTileThread extends Thread {
             totalSpeed += (l.getSpeed());
         }
 
-        return Math.max(20, (int) (defaultTime*((1/totalEfficiency))-totalSpeed*10)*tree.size());
+        return Math.max(1, (int) ((defaultTime*((1/totalEfficiency))-totalSpeed*10)*tree.size())/100);
     }
 
     public int calculateTimeToPlant(
@@ -93,6 +91,6 @@ public class ForestTileThread extends Thread {
             totalSpeed += (t.getSpeed());
         }
 
-        return Math.max(20, (int) (defaultTime*((1/totalEfficiency))-totalSpeed*10)*tree.size());
+        return Math.max(1, (int) ((defaultTime*((1/totalEfficiency))-totalSpeed*10)*tree.size())/100);
     }    
 }
