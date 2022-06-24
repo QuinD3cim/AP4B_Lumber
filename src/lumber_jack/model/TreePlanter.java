@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class TreePlanter extends Employee{
@@ -18,6 +19,8 @@ public class TreePlanter extends Employee{
     protected int posY;
     protected JFrame statsframe;
     protected DecimalFormat roundingMode;
+    protected int priceNextEfficiency;
+    protected int priceNextSpeed;
 
     public TreePlanter() {
         roundingMode = new DecimalFormat("#.#");
@@ -25,6 +28,8 @@ public class TreePlanter extends Employee{
         posY = 0;
         speed = 0.5f;
         efficiency =1f;
+        priceNextEfficiency = 10;
+        priceNextSpeed = 10;
     }
     public float getEfficiency() {
         return efficiency;
@@ -88,7 +93,7 @@ public class TreePlanter extends Employee{
         //Modification of speed
         JPanel speedPanel = new JPanel();
 
-        JButton speedPlusButton = new JButton("+");
+        JButton speedPlusButton = new JButton(priceNextSpeed+" €");
         JLabel speedLabel = new JLabel(roundingMode.format(speed));
         JLabel speedTitleLabel = new JLabel("Speed : ");
 
@@ -102,7 +107,7 @@ public class TreePlanter extends Employee{
         //Modification of efficiency
         JPanel efficiencyPanel = new JPanel();
         
-        JButton efficiencyPlusButton = new JButton("+");
+        JButton efficiencyPlusButton = new JButton(priceNextEfficiency+" €");
         JLabel efficiencyLabel = new JLabel(roundingMode.format(efficiency));
         JLabel efficiencyTitleLabel = new JLabel("Efficiency : ");
 
@@ -119,8 +124,14 @@ public class TreePlanter extends Employee{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                speed+= 0.1;
-                speedLabel.setText(roundingMode.format(speed));
+                if (isActionAuthorized(priceNextSpeed)) {
+                    speed+= 0.1;
+                    speedLabel.setText(roundingMode.format(speed));
+                    priceNextSpeed += priceNextSpeed/4;
+                    speedPlusButton.setText(priceNextSpeed +" €");
+                } else {
+                    JOptionPane.showMessageDialog(statsframe, "Vous n'avez pas assez d'argent !");
+                }
             }
             
         });
@@ -129,8 +140,14 @@ public class TreePlanter extends Employee{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                efficiency+= 0.1;
-                efficiencyLabel.setText(roundingMode.format(efficiency));
+                if (isActionAuthorized(priceNextSpeed)) {
+                    efficiency+= 0.1;
+                    efficiencyLabel.setText(roundingMode.format(efficiency));
+                    priceNextEfficiency += priceNextEfficiency/4;
+                    efficiencyPlusButton.setText(priceNextEfficiency +" €");
+                } else {
+                    JOptionPane.showMessageDialog(statsframe, "Vous n'avez pas assez d'argent !");
+                }
             }
             
         });
