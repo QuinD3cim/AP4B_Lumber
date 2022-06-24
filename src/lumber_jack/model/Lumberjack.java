@@ -11,9 +11,17 @@ public class Lumberjack extends Employee {
         this.efficiency = 0.3f;
     }
 
-    public void levelUpSpeed(int level){
-        this.upgradeSpeed((float)1/level*.5f);
-        this.increaseSalary((float)1/level*.25f);
+    public void levelUp(int level, int skill){
+        if (skill == 0)
+        {
+            this.upgradeSpeed((float)1/level*.5f);
+            this.increaseSalary((float)1/level*.25f);
+        }
+        else if (skill == 1)
+        {
+            this.upgradeEfficiency((float)1/level*.5f);
+            this.increaseSalary((float)1/level*.25f);
+        }
     }
 
     private void upgradeSpeed(float addToSpeed) {

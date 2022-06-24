@@ -1,6 +1,7 @@
 package lumber_jack.controller;
 
 import lumber_jack.model.Lumberjack;
+import lumber_jack.model.TreePlanter;
 
 public class UpgradeController {
 
@@ -8,6 +9,9 @@ public class UpgradeController {
     private int[] lumberjackLevels;
     private int[] lumberjackPrices;
     private Lumberjack lumberjackController;
+    private int[] treeplanterLevels;
+    private int[] treeplanterPrices;
+    private TreePlanter treeplanterController;
 
     public UpgradeController() 
     {
@@ -18,19 +22,27 @@ public class UpgradeController {
         lumberjackPrices[0] = 100;
         lumberjackPrices[1] = 100;
         lumberjackController = new Lumberjack();
+
+        treeplanterLevels = new int[2];
+        treeplanterPrices = new int[2];
+        treeplanterLevels[0] = 0;
+        treeplanterLevels[1] = 0;
+        treeplanterPrices[0] = 100;
+        treeplanterPrices[1] = 100;
+        treeplanterController = new TreePlanter();
     }
 
     // Upgrade the speed of a employee or machine, the int corresponds to the target machine
     // 0 : lumberjack, 
-    public void upgradeSpeed(int target) 
+    public void upgrade(int target, int skill) 
     {
         switch (target) {
             case 0:
-                if (lumberjackLevels[0] < levelMax)
+                if (lumberjackLevels[skill] < levelMax)
                 {
-                    lumberjackLevels[0]++;
-                    lumberjackPrices[0] *= 1.1f;
-                    lumberjackController.levelUpSpeed(lumberjackLevels[0]);
+                    lumberjackLevels[skill]++;
+                    lumberjackPrices[skill] *= 1.1f;
+                    lumberjackController.levelUp(lumberjackLevels[skill],skill);
                 }
                 break;
         

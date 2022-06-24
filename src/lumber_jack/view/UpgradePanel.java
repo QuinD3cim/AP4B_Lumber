@@ -39,16 +39,55 @@ public class UpgradePanel extends JPanel{
         JLabel label = new JLabel();
         String text = "Speed : Level " + controller.getLevel(0, 0);
         label.setText(text);
-        lumberjackPanel.add(label);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        lumberjackPanel.add(label,c);
 
         JButton button = new JButton("Upgrade");
         button.addActionListener(e -> lumberSpeedUpgrade());
-        lumberjackPanel.add(button);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 0;
+        lumberjackPanel.add(button,c);
 
         label = new JLabel();
         text = "cost : "+controller.getPrice(0, 0);
         label.setText(text);
-        lumberjackPanel.add(label);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 2;
+        c.gridy = 0;
+        lumberjackPanel.add(label,c);
+
+        label = new JLabel();
+        text = "Efficiency : Level " + controller.getLevel(0, 1);
+        label.setText(text);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0;
+        c.gridy = 1;
+        lumberjackPanel.add(label,c);
+
+        button = new JButton("Upgrade");
+        button.addActionListener(e -> lumberEfficiencyUpgrade());
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 1;
+        lumberjackPanel.add(button,c);
+
+        label = new JLabel();
+        text = "cost : "+controller.getPrice(0, 1);
+        label.setText(text);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 2;
+        c.gridy = 1;
+        lumberjackPanel.add(label,c);
 
         this.add(lumberjackPanel);
     }
@@ -58,7 +97,17 @@ public class UpgradePanel extends JPanel{
         if(ressources.getRessourceQuantity("Money") > controller.getPrice(0, 0))
         {
             ressources.updateRessource("Money", -controller.getPrice(0, 0));
-            controller.upgradeSpeed(0);
+            controller.upgrade(0,0);
+            this.update();
+        }
+    }
+
+    private void lumberEfficiencyUpgrade()
+    {
+        if(ressources.getRessourceQuantity("Money") > controller.getPrice(0, 1))
+        {
+            ressources.updateRessource("Money", -controller.getPrice(0, 1));
+            controller.upgrade(0,1);
             this.update();
         }
     }
@@ -78,19 +127,27 @@ public class UpgradePanel extends JPanel{
     private void updatePanel(JPanel panel)
     {
         int n = 0;
+        int i = 0;
         for(Component jc : panel.getComponents())
         {
             if(jc instanceof JLabel)
             {
                 JLabel label = (JLabel)jc;
                 String text = "";
-                if(n%2==0)
-                {
-                    text = "Speed : Level " + controller.getLevel(0, 0);
-                }
-                else
-                {
-                    text = "cost : "+controller.getPrice(0, 0);
+                switch (n) {
+                    case 0:
+                        text = "Speed : Level " + controller.getLevel(0, 0);
+                        i = 0;
+                        break;
+
+                    case 2:
+                        text = "Efficiency : Level " + controller.getLevel(0, 1);
+                        i = 1;
+                        break;
+                
+                    default:
+                        text = "cost : "+controller.getPrice(0, i);
+                        break;
                 }
                 label.setText(text);
                 n++;
