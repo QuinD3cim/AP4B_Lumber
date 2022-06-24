@@ -14,16 +14,21 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
 import lumber_jack.controller.ForestTileThread;
+import lumber_jack.controller.RessourceController;
 
 public class ForestPlot {
     protected boolean isBought;
     protected float boughtPrice;
     protected String currentAction;
     protected int currentPercentage;
+
+    protected int priceNextLumberjack;
+    protected int priceNextTreePlanter;
     
     protected ArrayList<Lumberjack> lumberjacksOnPlot;
     protected ArrayList<TreePlanter> treeplanterOnPlot;
@@ -39,6 +44,9 @@ public class ForestPlot {
         Random randGenerator = new Random();
         int numberOfTree = randGenerator.nextInt(5) + 1;
 
+        priceNextLumberjack = 100;
+        priceNextTreePlanter = 100;
+
         this.x = x;
         this.y = y;
         currentAction = "cut";
@@ -49,7 +57,7 @@ public class ForestPlot {
         treeplanterOnPlot = new ArrayList<TreePlanter>();
 
         plotButton = button;
-        plotButton.addMouseListener(new GridMouseListener(x,y));
+        plotButton.addMouseListener(new GridMouseListener());
         for(int i = 0; i < numberOfTree;i++) {
             treesOnPlot.add(new Tree());
         }
@@ -169,10 +177,11 @@ public class ForestPlot {
 
     public void addPopupContent(Container container) {
         container.add(new JLabel("Trees : "+treesOnPlot.size()));
+
+
+        // Generate lumberjacks
         container.add(new JLabel("Lumberjacks :"));
-
         
-
         for(int i = 0; i < lumberjacksOnPlot.size(); ++i) {
             JPanel lumberjackPanel = new JPanel();
             lumberjackPanel.add(new JLabel("lumberjack "+i));
@@ -210,18 +219,33 @@ public class ForestPlot {
             container.add(lumberjackPanel);
         }
 
+
+        // Generate the controller of lumberjack (to add lumberjacks)
+        JPanel addLumberJackPanel = new JPanel();
         JButton addLumberJack = new JButton("Add lumberjack");
+        JLabel addLumberjackLabel = new JLabel(priceNextLumberjack+" €");
+
+        addLumberJackPanel.add(addLumberJack);
+        addLumberJackPanel.add(addLumberjackLabel);
 
         addLumberJack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addLumberJackOnPlot(new Lumberjack());
-                refresPopup(container);
+                if(isActionAuthorized(priceNextLumberjack)) {
+                    addLumberJackOnPlot(new Lumberjack());
+                    priceNextLumberjack += priceNextLumberjack/4;
+                    addLumberjackLabel.setText(priceNextLumberjack+" €");
+                    refreshPopup(container);
+                } else {
+                    JOptionPane.showMessageDialog(container, "Vous n'avez pas assez d'argent !");
+                }
             } 
         });
 
-        container.add(addLumberJack);
+        container.add(addLumberJackPanel);
 
+
+        // Generate treeplanters
         container.add(new JLabel("Treeplanters :"));
 
         for(int i = 0; i < treeplanterOnPlot.size(); ++i) {
@@ -260,35 +284,41 @@ public class ForestPlot {
             container.add(treePlanterPanel);
         }
 
+
+        // Generate the controller of treeplanter (to add treeplanters)
+        JPanel addTreePlanterPanel = new JPanel();
         JButton addTreePlanter = new JButton("Add tree planter");
+        JLabel addTreePlanterLabel = new JLabel(priceNextTreePlanter+" €");
+
+        addTreePlanterPanel.add(addTreePlanter);
+        addTreePlanterPanel.add(addTreePlanterLabel);
+
         addTreePlanter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addTreePlanterOnPlot(new TreePlanter());
-                refresPopup(container);
+                if(isActionAuthorized(priceNextTreePlanter)) {
+                    addTreePlanterOnPlot(new TreePlanter());
+                    priceNextTreePlanter += priceNextTreePlanter/4;
+                    addTreePlanterLabel.setText(priceNextTreePlanter+" €");
+                    refreshPopup(container);
+                } else {
+                    JOptionPane.showMessageDialog(container, "Vous n'avez pas assez d'argent !");
+                }
+                
             } 
         });
-        container.add(addTreePlanter);
+        container.add(addTreePlanterPanel);
     }
 
-    public void refresPopup(Container container) {
+    public void refreshPopup(Container container) {
         container.removeAll();
         addPopupContent(container);
         container.revalidate();
     }
 
     class GridMouseListener extends MouseInputAdapter {
-        private int xPos;
-        private int yPos;
-
-        public GridMouseListener(int xPos, int yPos) {
-            this.xPos = xPos;
-            this.yPos = yPos;
-        }
-
         @Override
         public void mousePressed(MouseEvent e) {
-            System.out.println("Mouse touched : "+xPos+ " "+yPos);
             if (plotFrame == null) {
                 createPlotFrame();
             }
@@ -296,5 +326,22 @@ public class ForestPlot {
         }
     }
 
+    protected boolean isActionAuthorized(int price) {
+        int moneyAvailable = 0;
+        Product moneyProduct = null;
+
+        try {
+            moneyProduct = RessourceController.getStaticResource("Money");
+            moneyAvailable = moneyProduct.getStock().getCurrentValue();
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        if(price > moneyAvailable) {
+            return false;
+        }
+        RessourceController.getRessourcePanel().updateRessource("Money", -price);
+        return true;
+    }
     
 }
