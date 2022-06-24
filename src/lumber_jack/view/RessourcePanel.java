@@ -18,7 +18,7 @@ public class RessourcePanel extends JPanel{
     // Constructor for the Ressource panel
     public RessourcePanel(Dimension parentSize)
     {
-        controller = new RessourceController();
+        controller = new RessourceController(this);
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.setBounds(0, 0, parentSize.width/5, parentSize.height);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
