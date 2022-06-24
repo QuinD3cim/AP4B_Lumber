@@ -25,7 +25,7 @@ public class Stock {
     public void subValue(int n) {
         try {
             if (currentValue >= n) {
-                addValue(-n);
+                addValue(n);
             } else {
                 throw new Exception("Not enough stock of"+title);
             }

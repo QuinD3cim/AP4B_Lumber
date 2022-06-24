@@ -7,6 +7,10 @@ public class Machine {
     protected Product inProduct;
     protected Product outProduct;
 
+    public int getPrice(){
+        return upgradePrice;
+    }
+    
     public void upgradeSpeed(float speedToAdd){
 
         this.speed += speedToAdd;

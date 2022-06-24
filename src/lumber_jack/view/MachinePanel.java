@@ -1,67 +1,38 @@
 package lumber_jack.view;
 
 import javax.swing.*;
-//import javax.swing.JLabel;
 import javax.swing.event.MouseInputAdapter;
-import javax.swing.plaf.DimensionUIResource;
 
 import lumber_jack.controller.MachineController;
-import lumber_jack.model.Machine;
-import lumber_jack.controller.RessourceController;
 
 import java.awt.*;
 import java.awt.event.*;
-//import java.awt.Component;
-import java.security.Policy;
-import java.util.ArrayList;
 
 public class MachinePanel extends JPanel {
 
     private transient MachineController controller;
-    private ArrayList<Machine> machines;
     private int gridWidth = 15;
     private int gridHeight = 10;
-    private int cellSize = 0;
     Dimension cellDim = null;
     Dimension panelSize;
     RessourcePanel ressource;
 
     public MachinePanel(Dimension parentSize, MachineController controller,RessourcePanel ressource)
     {
-        this.machines = new ArrayList<>();
         this.controller = controller;
         panelSize = new Dimension((int) parentSize.getWidth()*4/5,(int) parentSize.getHeight()*4/5);
         setSize(panelSize);
-        cellSize = (int) Math.min(panelSize.getWidth(),panelSize.getHeight()) / Math.max(gridWidth,gridHeight);
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         cellDim = new Dimension((int)size.getHeight()/4,(int)size.getHeight()/4);
         GridLayout grid = new GridLayout(gridHeight, gridWidth);
         this.setLayout(grid);
         this.ressource= ressource;
-        //this.setBorder(BorderMachine.createLineBorder(Color.BLACK));
         this.setBackground(Color.lightGray);
-        //System.out.println(gteWidth());
 
-
-        //JPanel machines = new JPanel();
-        //machines.setLayout(new GridLayout(2, 2));
         JFrame machineFrame = new JFrame("Machine");
-
-        //JButton one = new JButton("Buy machine 1");
-        //JButton two = new JButton("Buy machine 2");
-        //JButton three = new JButton("Buy machine 3");
-        //JButton four = new JButton("Buy machine 4");
-
-        //machines.add(one);
-        //machines.add(two);
-        //machines.add(three);
-        //machines.add(four);
-
 
         int hauteur= (int)size.getHeight()/2;
         int largeur = (int)size.getWidth()/2;
-
-        //machineFrame.add(machines);
 
         machineFrame.setSize(largeur,hauteur);
         machineFrame.setVisible(true);
@@ -72,7 +43,6 @@ public class MachinePanel extends JPanel {
 
         machineFrame.setLayout(machineLayout);
 
-        //this.add(grid,BorderLayout.CENTER);
         createMachineGrid(machineFrame);
 
     }
@@ -86,13 +56,13 @@ public class MachinePanel extends JPanel {
                 JLabel machinePlot = new JLabel();
                 JButton buyMachine = new JButton();
                 buyMachine.setSize(50,75);
-                buyMachine.setText("Buy Machine " +row +" "+col);
+                buyMachine.setText("Buy Machine : " + controller.getMachinePrice());
 
                 JButton upgradeMachine = new JButton("Upgrade");
                 upgradeMachine.setSize(50,75);
-                upgradeMachine.setVisible(false);
 
-                buyMachine.addActionListener(new MachineListener(buyMachine, upgradeMachine, row, col));
+                buyMachine.addActionListener(controller.new MachineListener(buyMachine, upgradeMachine, row, col, gridWidth));
+                upgradeMachine.addActionListener(controller.new MachineListener(buyMachine, upgradeMachine, row, col, gridWidth));
 
 
                 machinePanel.add(machinePlot);
@@ -104,46 +74,16 @@ public class MachinePanel extends JPanel {
                 machinePlot.addMouseListener(new MachinePanel.GridMouseListener(col,row));
                 machinePlot.setPreferredSize(cellDim);
 
-                buyMachine.setVisible(true);
+                if(controller.hasMachine(col,row,gridWidth)){
+                    upgradeMachine.setVisible(true);
+                    buyMachine.setVisible(false);
+                } else {
+                    upgradeMachine.setVisible(false);
+                    buyMachine.setVisible(true);
+                }
 
                 machinegrid.add(machinePanel);
 
-            }
-        }
-    }
-
-    private class MachineListener implements ActionListener{
-        
-        private JButton buyMachine;
-        private JButton upgradeMachine;
-        private int buttonRow;
-        private int buttonCol;
-
-        protected MachineListener(JButton buyMachine, JButton upgradeMachine, int buttonRow, int buttonCol){
-            this.buyMachine = buyMachine;
-            this.upgradeMachine = upgradeMachine;
-            this.buttonRow = buttonRow;
-            this.buttonCol = buttonCol;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e){
-            if ( buyMachine.isVisible() && ressource.getRessourceQuantity("Money") > 500) {
-                buyMachine.setVisible(false);
-                upgradeMachine.setVisible(true);
-                if(buttonCol==0 && machines.size()<(buttonRow+buttonCol)){
-                    machines.add(new Machine());
-                }else if(buttonCol==1 && machines.size()<(buttonRow+buttonCol+1)){
-                    machines.add(new Machine());
-                }else{
-                    if(buttonCol == 0){
-                        machines.add(buttonCol+buttonRow,new Machine());
-                    }else{
-                        machines.add(buttonCol+buttonRow+1,new Machine());
-                    }
-                }
-
-                ressource.updateRessource("Money",500);
             }
         }
     }
@@ -160,12 +100,7 @@ public class MachinePanel extends JPanel {
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
-
-
-
-
-        }
+        public void mousePressed(MouseEvent e) {}
     }
 
 
