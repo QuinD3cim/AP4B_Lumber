@@ -68,6 +68,12 @@ public class ForestTileThread extends Thread {
 
                 }
             }
+
+            if(timeToCut == -1 || timeToPlant == -1) {
+                try{
+                    wait();
+                } catch (Exception e) {}
+            }
             
 
         }    
