@@ -1,6 +1,7 @@
 package lumber_jack;
 
 import java.awt.Dimension;
+
 import java.awt.Toolkit;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -24,10 +25,10 @@ public class Main {
         JFrame game = new JFrame("LumberJack");
         game.setLayout(new GridBagLayout());
         
-        
         game.setSize(size);
 
         RessourcePanel ressources = new RessourcePanel(size);
+
         ForestController forestController = new ForestController(size);
         
         game.add(ressources, createSideMenuConstraints(size));
