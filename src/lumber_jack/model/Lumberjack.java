@@ -22,6 +22,10 @@ public class Lumberjack extends Employee {
     protected int priceNextEfficiency;
     protected int priceNextSpeed;
 
+    /**
+     * Create a new Lumberjack by initializating it's position, speed, efficiency and the price to upgrade those
+     * two last statistics
+     */
     public Lumberjack() {
         roundingMode = new DecimalFormat("#.#");
         posX = 0;
@@ -32,14 +36,25 @@ public class Lumberjack extends Employee {
         priceNextSpeed = 10;
     }
 
+    /**
+     * @return the efficiency of a lumberjack
+     */
     public float getEfficiency() {
         return efficiency;
     }
 
+    /**
+     * @return the speed of the lumberjack
+     */
     public float getSpeed() {
         return speed;
     }
 
+    /**
+     * Function to upgrade the level of a skill
+     * @param level - Level of the skill we want to upgrade
+     * @param skill - Skill we want to upgrade
+     */
     public void levelUp(int level, int skill){
         if (skill == 0)
         {
@@ -53,30 +68,55 @@ public class Lumberjack extends Employee {
         }
     }
 
+    /**
+     * Function to upgrade speed
+     * @param addToSpeed - multiplicator of the speed we upgrade
+     */
     private void upgradeSpeed(float addToSpeed) {
         speed += addToSpeed;
     }
 
+    /**
+     * Function to upgrade efficiency
+     * @param addToEfficiency - multiplicator of the efficiency we upgrade
+     */
     public void upgradeEfficiency(float addToEfficiency) {
         efficiency += addToEfficiency;
     }
 
+    /**
+     * @return the x position of the lumberjack
+     */
     public int getPositionX() {
         return posX;
     }
-    
+
+    /**
+     * @return the y position of the lumberjack
+     */
     public int getPositionY() {
         return posY;
     }
-    
+
+    /**
+     * Sets the x position of the lumberjack
+     * @param x - the x position we want the lumberjack to take
+     */
     public void setPositionX(int x) {
         posX = x;
-    } 
-    
+    }
+
+    /**
+     * Sets the y position of the lumberjack
+     * @param y - the y position we want the lumberjack to take
+     */
     public void setPositionY(int y) {
         posY = y;
     }
 
+    /**
+     * Function to show the stats of the lumberjack
+     */
     public void showStats() {
         statsframe = new JFrame("Lumberjack");
         statsframe.setPreferredSize(new Dimension(400, 300));
