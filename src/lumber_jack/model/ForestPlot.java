@@ -82,9 +82,10 @@ public class ForestPlot {
         refreshButton();
     }
 
-    synchronized public Tree cutTree() {
-        treesOnPlot.get(0).cut();
-        return treesOnPlot.remove(0);
+    synchronized public void cutTree() {
+        Tree cutTree = treesOnPlot.remove(0);
+        cutTree.cut();
+
     }
 
     synchronized public void plantTree() {
