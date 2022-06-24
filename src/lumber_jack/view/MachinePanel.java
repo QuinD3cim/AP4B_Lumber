@@ -22,10 +22,6 @@ public class MachinePanel extends JPanel {
     private int gridWidth = 15;
     private int gridHeight = 10;
     private int cellSize = 0;
-
-    private int row;
-
-    private int col;
     Dimension cellDim = null;
     Dimension panelSize;
     RessourcePanel ressource;
@@ -83,8 +79,9 @@ public class MachinePanel extends JPanel {
 
 
     protected void createMachineGrid(JFrame machinegrid){
-        for (row = 0; row < 2; row++) {
-            for (col = 0; col < 2; col++) {
+        
+        for (int row = 0; row < 2; row++) {
+            for (int col = 0; col < 2; col++) {
                 JPanel machinePanel = new JPanel();
                 JLabel machinePlot = new JLabel();
                 JButton buyMachine = new JButton();
@@ -95,26 +92,7 @@ public class MachinePanel extends JPanel {
                 upgradeMachine.setSize(50,75);
                 upgradeMachine.setVisible(false);
 
-                buyMachine.addActionListener(e-> {
-                    if ( buyMachine.isVisible() && ressource.getRessourceQuantity("Money") > 500) {
-                        buyMachine.setVisible(false);
-                        upgradeMachine.setVisible(true);
-                        if(col==0 && machines.size()<(col+row)){
-                            machines.add(new Machine());
-                        }else if(col==1 && machines.size()<(col+row+1)){
-                            machines.add(new Machine());
-                        }else{
-                            if(col == 0){
-                                machines.add(row+col,new Machine());
-                            }else{
-                                machines.add(row+col+1,new Machine());
-                            }
-                        }
-
-                        ressource.updateRessource("Money",-500);
-                    }
-
-                });
+                buyMachine.addActionListener(new MachineListener(buyMachine, upgradeMachine, row, col));
 
 
                 machinePanel.add(machinePlot);
@@ -130,6 +108,42 @@ public class MachinePanel extends JPanel {
 
                 machinegrid.add(machinePanel);
 
+            }
+        }
+    }
+
+    private class MachineListener implements ActionListener{
+        
+        private JButton buyMachine;
+        private JButton upgradeMachine;
+        private int buttonRow;
+        private int buttonCol;
+
+        protected MachineListener(JButton buyMachine, JButton upgradeMachine, int buttonRow, int buttonCol){
+            this.buyMachine = buyMachine;
+            this.upgradeMachine = upgradeMachine;
+            this.buttonRow = buttonRow;
+            this.buttonCol = buttonCol;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+            if ( buyMachine.isVisible() && ressource.getRessourceQuantity("Money") > 500) {
+                buyMachine.setVisible(false);
+                upgradeMachine.setVisible(true);
+                if(buttonCol==0 && machines.size()<(buttonRow+buttonCol)){
+                    machines.add(new Machine());
+                }else if(buttonCol==1 && machines.size()<(buttonRow+buttonCol+1)){
+                    machines.add(new Machine());
+                }else{
+                    if(buttonCol == 0){
+                        machines.add(buttonCol+buttonRow,new Machine());
+                    }else{
+                        machines.add(buttonCol+buttonRow+1,new Machine());
+                    }
+                }
+
+                ressource.updateRessource("Money",500);
             }
         }
     }
