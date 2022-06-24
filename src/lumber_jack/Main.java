@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import lumber_jack.controller.ForestController;
 import lumber_jack.controller.MenuController;
 import lumber_jack.model.IndustryModel;
-import lumber_jack.view.ForestPanel;
 import lumber_jack.view.RessourcePanel;
 
 public class Main {
