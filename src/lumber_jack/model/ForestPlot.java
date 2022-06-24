@@ -38,6 +38,8 @@ public class ForestPlot {
     protected int x;
     protected int y;
 
+    protected Thread forestThread;
+
     protected JFrame plotFrame;
     
     /**
@@ -68,7 +70,8 @@ public class ForestPlot {
             treesOnPlot.add(new Tree());
         }
         refreshButton();
-        new ForestTileThread(x, y, this).start();
+        forestThread = new ForestTileThread(x, y, this);
+        forestThread.start();
     }
 
     /**
@@ -118,6 +121,7 @@ public class ForestPlot {
     synchronized public void addLumberJackOnPlot(Lumberjack lumberjack) {
         lumberjacksOnPlot.add(lumberjack);
         refreshButton();
+        notifyAll();
     }
 
     /**
@@ -151,9 +155,10 @@ public class ForestPlot {
      * Add a tree planter on a forest plot
      * @param treePlanter - the TreePlanter to add
      */
-    public void addTreePlanterOnPlot(TreePlanter treePlanter) {
+    synchronized public void addTreePlanterOnPlot(TreePlanter treePlanter) {
         treeplanterOnPlot.add(treePlanter);
         refreshButton();
+        notifyAll();
     }
 
     /**
