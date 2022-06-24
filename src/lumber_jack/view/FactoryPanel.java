@@ -59,7 +59,12 @@ public class FactoryPanel extends JPanel {
         }
     }
 
-
+    
+    /** 
+     * @param xPos x position of the field
+     * @param yPos y position of the field
+     * @param gridWidth Total length of the factory
+     */
     private void buyLand(int xPos, int yPos, int gridWidth){
         machineLines.put(xPos + yPos*gridWidth, new MachineController(getSize(), ressource));
         ressource.updateRessource("Money", -terrainPrice);

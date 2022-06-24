@@ -48,6 +48,10 @@ public class MachinePanel extends JPanel {
     }
 
 
+    
+    /** 
+     * @param machinegrid
+     */
     protected void createMachineGrid(JFrame machinegrid){
         
         for (int row = 0; row < 2; row++) {
@@ -75,6 +79,7 @@ public class MachinePanel extends JPanel {
                 machinePlot.setPreferredSize(cellDim);
 
                 if(controller.hasMachine(col,row,gridWidth)){
+                    upgradeMachine.setText("Upgrade : "+ controller.getUpgradePrice(row+col*gridWidth));
                     upgradeMachine.setVisible(true);
                     buyMachine.setVisible(false);
                 } else {
