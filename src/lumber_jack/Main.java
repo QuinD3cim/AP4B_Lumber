@@ -25,49 +25,5 @@ public class Main {
     public Main() {
         MenuView menu = new MenuView();
         menu.TitleScreen();
-
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-
-        JFrame game = new JFrame("LumberJack");
-        game.setLayout(new GridBagLayout());
-        
-        game.setSize(size);
-
-        RessourcePanel ressources = new RessourcePanel(size);
-      
-        //ForestController forestController = new ForestController(size);
-        FactoryController factoryController= new FactoryController(size,ressources);
-
-        game.add(ressources, createSideMenuConstraints(size));
-        //game.add(forestController.getPanel(),createMainPanelConstraints(size));
-        game.add(factoryController.getPanel(),createMainPanelConstraints(size));
-
-        game.setVisible(true);
-
-        new IndustryModel();
-        new MenuController();
-    }
-
-    private GridBagConstraints createSideMenuConstraints(Dimension size) {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.weightx = 0.5;
-        constraints.fill = GridBagConstraints.VERTICAL;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        constraints.ipadx = size.width/5;
-        constraints.ipady = size.height;
-        return constraints;
-    }
-
-    private GridBagConstraints createMainPanelConstraints(Dimension size) {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.weightx = 0.8;
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        constraints.ipadx = size.width*4/5;
-        constraints.ipady = size.height*4/5;
-        return constraints;
     }
 }
