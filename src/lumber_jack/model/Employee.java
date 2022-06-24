@@ -9,7 +9,7 @@ public abstract class Employee {
     {
         this.salary += amount;
     }
-    
+
     protected boolean isActionAuthorized(int price) {
         int moneyAvailable = 0;
         Product moneyProduct = null;
@@ -24,7 +24,7 @@ public abstract class Employee {
         if(price > moneyAvailable) {
             return false;
         }
-        RessourceController.getRessourcePanel().updateRessource("Money", 5);
+        RessourceController.getRessourcePanel().updateRessource("Money", -price);
         return true;
     }
 }
