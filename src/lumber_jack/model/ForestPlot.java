@@ -26,7 +26,6 @@ public class ForestPlot {
     protected float boughtPrice;
     protected String currentAction;
     protected int currentPercentage;
-
     protected int priceNextLumberjack;
     protected int priceNextTreePlanter;
     
@@ -38,6 +37,7 @@ public class ForestPlot {
     protected int x;
     protected int y;
 
+
     protected Thread forestThread;
 
     protected JFrame plotFrame;
@@ -48,9 +48,11 @@ public class ForestPlot {
      * @param x - int x position in forest grid
      * @param y - int y position in forest grid
      */
+
     public ForestPlot(JLabel button, int x, int y) {
         Random randGenerator = new Random();
         int numberOfTree = randGenerator.nextInt(5) + 1;
+
 
         priceNextLumberjack = 100;
         priceNextTreePlanter = 100;
@@ -90,6 +92,7 @@ public class ForestPlot {
         return treeplanterOnPlot;
     }
 
+
     /**
      * synchronized function to get all trees on a plot
      * @return the list of all trees on plot
@@ -97,6 +100,7 @@ public class ForestPlot {
     synchronized public ArrayList<Tree> getTreesOnPlot() {
         return treesOnPlot;
     }
+
 
     /**
      * Setter for the current action (cut or plant)
@@ -106,6 +110,7 @@ public class ForestPlot {
         currentAction = action;
     }
 
+
     /**
      * Setter for the current advacement percentage
      * @param currentPercentage - an int to set the percentage
@@ -113,6 +118,7 @@ public class ForestPlot {
     synchronized public void setCurrentPercentage(int currentPercentage) {
         this.currentPercentage = currentPercentage;
     }
+
 
     /**
      * Add a new lumberjack on a plot
@@ -136,20 +142,24 @@ public class ForestPlot {
     /**
      * Function to plant a tree
      */
+
     synchronized public void plantTree() {
         treesOnPlot.add(new Tree());
     }
+
 
     /**
      * Move a lumberjack into another plot
      * @param plot - the target ForestPlot
      */
+
     public void moveLumberJack(ForestPlot plot) {
         Lumberjack toMove = lumberjacksOnPlot.remove(lumberjacksOnPlot.size()-1);
         plot.lumberjacksOnPlot.add(toMove);
         plot.refreshButton();
         refreshButton();
     }
+
 
     /**
      * Add a tree planter on a forest plot
@@ -165,12 +175,14 @@ public class ForestPlot {
      * Move a tree planter into another plot
      * @param plot - the target ForestPlot
      */
+
     public void moveTreePlanter(ForestPlot plot) {
         TreePlanter toMove = treeplanterOnPlot.remove(treeplanterOnPlot.size()-1);
         plot.treeplanterOnPlot.add(toMove);
         plot.refreshButton();
         refreshButton();
     }
+
 
     /**
      * Graphical function to refresh the button
@@ -388,6 +400,7 @@ public class ForestPlot {
             
         }
     }
+
 
     /**
      * Method to verify that the player can afford the buying

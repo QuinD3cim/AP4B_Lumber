@@ -68,6 +68,7 @@ public class Lumberjack extends Employee {
         }
     }
 
+
     /**
      * Function to upgrade speed
      * @param addToSpeed - multiplicator of the speed we upgrade
@@ -83,6 +84,7 @@ public class Lumberjack extends Employee {
     public void upgradeEfficiency(float addToEfficiency) {
         efficiency += addToEfficiency;
     }
+
 
     /**
      * @return the x position of the lumberjack
@@ -110,13 +112,16 @@ public class Lumberjack extends Employee {
      * Sets the y position of the lumberjack
      * @param y - the y position we want the lumberjack to take
      */
+
     public void setPositionY(int y) {
         posY = y;
     }
 
+
     /**
      * Function to show the stats of the lumberjack
      */
+
     public void showStats() {
         statsframe = new JFrame("Lumberjack");
         statsframe.setPreferredSize(new Dimension(400, 300));

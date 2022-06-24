@@ -26,6 +26,7 @@ public class ForestTileThread extends Thread {
         this.plot = plot;
     }
 
+
     /**
      * Override of the run method
      */
@@ -69,15 +70,16 @@ public class ForestTileThread extends Thread {
                 }
             }
 
+
             if(timeToCut == -1 || timeToPlant == -1) {
                 try{
                     wait();
                 } catch (Exception e) {}
             }
-            
 
         }    
     }
+
 
     /**
      * Method to calculate the time to cut a tree
@@ -85,6 +87,7 @@ public class ForestTileThread extends Thread {
      * @param tree - a list of Trees
      * @return the time of 1 % to cut a tree
      */
+
     public int calculateTimeToCut(
         ArrayList<Lumberjack> lumberjacks,
         ArrayList<Tree> tree
@@ -99,6 +102,7 @@ public class ForestTileThread extends Thread {
 
         return Math.max(1, (int) ((defaultTime*((1/totalEfficiency))-totalSpeed*10)*tree.size())/100);
     }
+
 
     /**
      * Method to calculate the time to plant a tree

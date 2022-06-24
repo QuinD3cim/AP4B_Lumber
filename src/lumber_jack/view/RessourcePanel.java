@@ -26,6 +26,8 @@ public class RessourcePanel extends JPanel{
         this.addResource("Money",1f);
         this.updateRessource("Money", 1000);
         this.addResource("Wood",5.5f);
+        this.updateRessource("Wood", 1000);
+        this.addResource("Plank",7f);
     }
 
     // Makes a ressource and adds it to the Ressource panel
@@ -58,6 +60,7 @@ public class RessourcePanel extends JPanel{
     {
         return controller.getRessource(name).getStock().getCurrentValue();
     }
+
 
     // Updates the Panel to show the updated values
 

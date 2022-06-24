@@ -5,9 +5,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import lumber_jack.controller.FactoryController;
 import lumber_jack.controller.ForestController;
 import lumber_jack.controller.MenuController;
 import lumber_jack.model.IndustryModel;
@@ -27,11 +29,13 @@ public class Main {
         game.setSize(size);
 
         RessourcePanel ressources = new RessourcePanel(size);
+      
+        //ForestController forestController = new ForestController(size);
+        FactoryController factoryController= new FactoryController(size,ressources);
 
-        ForestController forestController = new ForestController(size);
-        
         game.add(ressources, createSideMenuConstraints(size));
-        game.add(forestController.getPanel(),createMainPanelConstraints(size));
+        //game.add(forestController.getPanel(),createMainPanelConstraints(size));
+        game.add(factoryController.getPanel(),createMainPanelConstraints(size));
 
         game.setVisible(true);
 

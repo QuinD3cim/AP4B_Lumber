@@ -22,9 +22,11 @@ public class TreePlanter extends Employee{
     protected int priceNextEfficiency;
     protected int priceNextSpeed;
 
+
     /**
      * Constructor that will initialize the TreePlanter
      */
+
     public TreePlanter() {
         roundingMode = new DecimalFormat("#.#");
         posX = 0;
@@ -35,13 +37,16 @@ public class TreePlanter extends Employee{
         priceNextSpeed = 10;
     }
 
+
     /**
      * getter of the efficiency
      * @return a float, the efficiency
      */
+
     public float getEfficiency() {
         return efficiency;
     }
+
 
     /**
      * getter of the speed
@@ -50,6 +55,7 @@ public class TreePlanter extends Employee{
     public float getSpeed() {
         return speed;
     }
+
 
     /**
      * Method to level up a tree planter
@@ -86,41 +92,51 @@ public class TreePlanter extends Employee{
         efficiency += addToEfficiency;
     }
 
+
     /**
      * getter for the x coordinate
      * @return an int, the x position
      */
+
     public int getPositionX() {
         return posX;
     }
+
 
     /**
      * getter for the y coordinate
      * @return an int, the y position
      */
+
     public int getPositionY() {
         return posY;
     }
 
+  
     /**
      * setter for the x coordinate
      * @param x - int, the new x position
      */
+
     public void setPositionX(int x) {
         posX = x;
     } 
+
 
     /**
      * setter for the y coordinate
      * @param y - int, the new y position
      */
+
     public void setPositionY(int y) {
         posY = y;
     }
 
+
     /**
      * Method to show the statistics of tree planter 
      */
+
     public void showStats() {
         statsframe = new JFrame("TreePlanter");
         statsframe.setPreferredSize(new Dimension(400, 300));

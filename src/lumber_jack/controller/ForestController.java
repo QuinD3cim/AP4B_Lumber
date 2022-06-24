@@ -22,6 +22,7 @@ public class ForestController {
         panel = new ForestPanel(parentSize,this);
     }
     
+
     /**
      * Method to create a forest plot and link it with the appropriate JLabel from JPanel
      * @param plotButton - JLabel representing a button for the forestplot
