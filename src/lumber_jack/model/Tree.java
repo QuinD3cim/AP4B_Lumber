@@ -10,10 +10,13 @@ public class Tree {
     protected int logQuantity;
     protected int moneyGenerated;
 
-    public void cut() {
+    public Tree() {
         Random rand = new Random();
-        logQuantity = (int) ((rand.nextGaussian()-0.5) * 20 + 50); // Gaussian centerd in 0.
+        logQuantity = (int) ((rand.nextGaussian()) * 20 + 50); // Gaussian centered in 0.5
         moneyGenerated = logQuantity/2;
+    }
+
+    public void cut() {   
         generateRessource();
     }
 
