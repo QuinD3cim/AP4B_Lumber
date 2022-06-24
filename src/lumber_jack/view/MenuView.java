@@ -7,7 +7,6 @@ import lumber_jack.controller.MenuController;
 import lumber_jack.model.IndustryModel;
 
 import java.awt.*;
-import java.io.IOException;
 import java.awt.event.*;
 
 public class MenuView {
