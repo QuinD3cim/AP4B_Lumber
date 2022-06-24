@@ -14,6 +14,7 @@ public class RessourceController {
     }
 
     // Returns the position of a ressource in the list
+    // - String name : name of the ressource
     private int findProduct(String name)
     {
         for (int i = 0; i<this.getRessourceSize(); i++)
@@ -27,6 +28,8 @@ public class RessourceController {
     }
 
     // Change the quantity of the ressource
+    // - String name : name of the ressource
+    // - int quantity : quantity to add to the stock (can be negative)
     public void changeRessource(String name, int quantity)
     {
         int n = 0;
@@ -37,17 +40,22 @@ public class RessourceController {
     }
 
     // Creates a ressource and adds it to the ressource list
+    // - String name : name of the ressource
+    // - float sellingPrice : selling price of the ressource
     public void makeRessource(String name, float sellingPrice)
     {
         ressourceList.add(new Product(name,sellingPrice));
     }
 
-    // Returns a ressource
+    // Returns the asked ressource 
+    // - int n : index of the ressource
     public Product getRessource(int n)
     {
         return ressourceList.get(n);
     }
 
+    // Returns the asked ressoutce
+    // - String name : name of the ressource
     public Product getRessource(String name)
     {
         return ressourceList.get(this.findProduct(name));

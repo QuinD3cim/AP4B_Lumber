@@ -15,6 +15,7 @@ public class RessourcePanel extends JPanel{
 
     private transient RessourceController controller;
 
+    // Constructor for the Ressource panel
     public RessourcePanel(Dimension parentSize)
     {
         controller = new RessourceController();
@@ -28,6 +29,8 @@ public class RessourcePanel extends JPanel{
     }
 
     // Makes a ressource and adds it to the Ressource panel
+    // - String name : name of the ressource
+    // - float price : sell price of the ressource
     public void addResource(String name, float price)
     {
         controller.makeRessource(name, price);
@@ -39,6 +42,8 @@ public class RessourcePanel extends JPanel{
     }
 
     // Update the quantity of the ressource "name"
+    // - String name : name of the ressource
+    // - int quantity : quantity to add to the stock (can be negative)
     public void updateRessource(String name, int quantity)
     {
         controller.changeRessource(name, quantity);
@@ -47,12 +52,13 @@ public class RessourcePanel extends JPanel{
     }
 
     // Returns the quantity of the ressource "name"
+    // - String name : name of the ressource 
     public int getRessourceQuantity(String name)
     {
         return controller.getRessource(name).getStock().getCurrentValue();
     }
 
-    // Updates the labels to show the updated values
+    // Updates the Panel to show the updated values
     private void refreshView(){
         int n = 0;
         for(Component jc : this.getComponents())
