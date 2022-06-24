@@ -40,6 +40,12 @@ public class ForestPlot {
 
     protected JFrame plotFrame;
     
+    /**
+     * Creation of a forest plot where we assign lumberjacks, tree planters and trees.
+     * @param button - label which we can click to display the informations of the plot 
+     * @param x - int x position in forest grid
+     * @param y - int y position in forest grid
+     */
     public ForestPlot(JLabel button, int x, int y) {
         Random randGenerator = new Random();
         int numberOfTree = randGenerator.nextInt(5) + 1;
@@ -65,41 +71,75 @@ public class ForestPlot {
         new ForestTileThread(x, y, this).start();
     }
 
+    /**
+     * synchronized function to get all lumberjacks on a plot
+     * @return the list of all lumberjacks on plot
+     */
     synchronized public ArrayList<Lumberjack> getLumberjacksOnPlot() {
         return lumberjacksOnPlot;
     }
 
+    /**
+     * synchronized function to get all tree planters on a plot
+     * @return the list of all tree planters on plot
+     */
     synchronized public ArrayList<TreePlanter> getTreeplanterOnPlot() {
         return treeplanterOnPlot;
     }
 
+    /**
+     * synchronized function to get all trees on a plot
+     * @return the list of all trees on plot
+     */
     synchronized public ArrayList<Tree> getTreesOnPlot() {
         return treesOnPlot;
     }
 
+    /**
+     * Setter for the current action (cut or plant)
+     * @param action - a String defining the current action
+     */
     synchronized public void setCurrentAction(String action) {
         currentAction = action;
     }
 
+    /**
+     * Setter for the current advacement percentage
+     * @param currentPercentage - an int to set the percentage
+     */
     synchronized public void setCurrentPercentage(int currentPercentage) {
         this.currentPercentage = currentPercentage;
     }
 
+    /**
+     * Add a new lumberjack on a plot
+     * @param lumberjack - Lumberjack, the lumberjack to add
+     */
     synchronized public void addLumberJackOnPlot(Lumberjack lumberjack) {
         lumberjacksOnPlot.add(lumberjack);
         refreshButton();
     }
 
+    /**
+     * Function to cut a tree
+     */
     synchronized public void cutTree() {
         Tree cutTree = treesOnPlot.remove(0);
         cutTree.cut();
 
     }
 
+    /**
+     * Function to plant a tree
+     */
     synchronized public void plantTree() {
         treesOnPlot.add(new Tree());
     }
 
+    /**
+     * Move a lumberjack into another plot
+     * @param plot - the target ForestPlot
+     */
     public void moveLumberJack(ForestPlot plot) {
         Lumberjack toMove = lumberjacksOnPlot.remove(lumberjacksOnPlot.size()-1);
         plot.lumberjacksOnPlot.add(toMove);
@@ -107,11 +147,19 @@ public class ForestPlot {
         refreshButton();
     }
 
+    /**
+     * Add a tree planter on a forest plot
+     * @param treePlanter - the TreePlanter to add
+     */
     public void addTreePlanterOnPlot(TreePlanter treePlanter) {
         treeplanterOnPlot.add(treePlanter);
         refreshButton();
     }
 
+    /**
+     * Move a tree planter into another plot
+     * @param plot - the target ForestPlot
+     */
     public void moveTreePlanter(ForestPlot plot) {
         TreePlanter toMove = treeplanterOnPlot.remove(treeplanterOnPlot.size()-1);
         plot.treeplanterOnPlot.add(toMove);
@@ -119,6 +167,9 @@ public class ForestPlot {
         refreshButton();
     }
 
+    /**
+     * Graphical function to refresh the button
+     */
     synchronized public void refreshButton() {
         plotButton.setText(
             "<html><body>" +
@@ -129,10 +180,9 @@ public class ForestPlot {
             );
     }
 
-    public void buy() {
-
-    }
-
+    /**
+     * Huge function to initialize the graphical plot and start popup
+     */
     public void createPlotFrame() {
         plotFrame = new JFrame("Forest plot "+x+" "+y);
         plotFrame.setPreferredSize(new Dimension(400, 500));
@@ -175,6 +225,10 @@ public class ForestPlot {
         });
     }
 
+    /**
+     * Add a popup window with all the informations to upgrade lumberjacks and tree planters
+     * @param container - a graphical Container containing all the informations 
+     */
     public void addPopupContent(Container container) {
         container.add(new JLabel("Trees : "+treesOnPlot.size()));
 
@@ -310,6 +364,10 @@ public class ForestPlot {
         container.add(addTreePlanterPanel);
     }
 
+    /**
+     * Refresh the popup window
+     * @param container - a COntainer containing the content of the popup window
+     */
     public void refreshPopup(Container container) {
         container.removeAll();
         addPopupContent(container);
@@ -326,6 +384,11 @@ public class ForestPlot {
         }
     }
 
+    /**
+     * Method to verify that the player can afford the buying
+     * @param price - int with the price of the thing we want to buy
+     * @return a boolean : true if the player can afford the thing and false else
+     */
     protected boolean isActionAuthorized(int price) {
         int moneyAvailable = 0;
         Product moneyProduct = null;

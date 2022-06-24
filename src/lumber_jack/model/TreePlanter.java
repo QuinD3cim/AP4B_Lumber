@@ -22,6 +22,9 @@ public class TreePlanter extends Employee{
     protected int priceNextEfficiency;
     protected int priceNextSpeed;
 
+    /**
+     * Constructor that will initialize the TreePlanter
+     */
     public TreePlanter() {
         roundingMode = new DecimalFormat("#.#");
         posX = 0;
@@ -31,14 +34,28 @@ public class TreePlanter extends Employee{
         priceNextEfficiency = 10;
         priceNextSpeed = 10;
     }
+
+    /**
+     * getter of the efficiency
+     * @return a float, the efficiency
+     */
     public float getEfficiency() {
         return efficiency;
     }
 
+    /**
+     * getter of the speed
+     * @return a float, the speed
+     */
     public float getSpeed() {
         return speed;
     }
 
+    /**
+     * Method to level up a tree planter
+     * @param level - int with the level of the player
+     * @param skill - int with the skill of the player
+     */
     public void levelUp(int level, int skill){
         if (skill == 0)
         {
@@ -53,30 +70,57 @@ public class TreePlanter extends Employee{
     }
 
 
+    /**
+     * Method to upgrade the speed a tree planter
+     * @param addToSpeed - float representing the speed to add to current speed
+     */
     public void upgradeSpeed(float addToSpeed) {
         speed += addToSpeed;
     }
 
+    /**
+     * Method to upgrade efficiency a tree planter
+     * @param addToEfficiency - float representing the efficiency to add to current speed
+     */
     public void upgradeEfficiency(float addToEfficiency) {
         efficiency += addToEfficiency;
     }
 
+    /**
+     * getter for the x coordinate
+     * @return an int, the x position
+     */
     public int getPositionX() {
         return posX;
     }
 
+    /**
+     * getter for the y coordinate
+     * @return an int, the y position
+     */
     public int getPositionY() {
         return posY;
     }
 
+    /**
+     * setter for the x coordinate
+     * @param x - int, the new x position
+     */
     public void setPositionX(int x) {
         posX = x;
     } 
 
+    /**
+     * setter for the y coordinate
+     * @param y - int, the new y position
+     */
     public void setPositionY(int y) {
         posY = y;
     }
 
+    /**
+     * Method to show the statistics of tree planter 
+     */
     public void showStats() {
         statsframe = new JFrame("TreePlanter");
         statsframe.setPreferredSize(new Dimension(400, 300));

@@ -11,15 +11,24 @@ public class ForestTileThread extends Thread {
 
     protected int x;
     protected int y;
-    protected float defaultTime = 5 * 60 * 1000; //15 minutes
+    protected float defaultTime = 60 * 1000; //1 minute
     protected ForestPlot plot;
 
+    /**
+     * Constructor of a forest thread. It will simulate the cut and planting of tree
+     * @param x - int, x position
+     * @param y - int, y position
+     * @param plot - the ForestPlot linked with the thread
+     */
     public ForestTileThread(int x,int y, ForestPlot plot) {
         this.x = x;
         this.y = y;
         this.plot = plot;
     }
 
+    /**
+     * Override of the run method
+     */
     @Override
     public void run() {
         while(true) {
@@ -64,6 +73,12 @@ public class ForestTileThread extends Thread {
         }    
     }
 
+    /**
+     * Method to calculate the time to cut a tree
+     * @param lumberjacks - a list of Lumberjacks
+     * @param tree - a list of Trees
+     * @return the time of 1 % to cut a tree
+     */
     public int calculateTimeToCut(
         ArrayList<Lumberjack> lumberjacks,
         ArrayList<Tree> tree
@@ -79,6 +94,12 @@ public class ForestTileThread extends Thread {
         return Math.max(1, (int) ((defaultTime*((1/totalEfficiency))-totalSpeed*10)*tree.size())/100);
     }
 
+    /**
+     * Method to calculate the time to plant a tree
+     * @param lumberjacks - a list of Lumberjacks
+     * @param tree - a list of Trees
+     * @return the time of 1 % to plant a tree
+     */
     public int calculateTimeToPlant(
         ArrayList<TreePlanter> treeplanters,
         ArrayList<Tree> tree

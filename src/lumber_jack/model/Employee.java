@@ -10,6 +10,11 @@ public abstract class Employee {
         this.salary += amount;
     }
 
+    /**
+     * Method to verify that the player can afford the buying
+     * @param price - int with the price of the thing we want to buy
+     * @return a boolean : true if the player can afford the thing and false else
+     */
     protected boolean isActionAuthorized(int price) {
         int moneyAvailable = 0;
         Product moneyProduct = null;
