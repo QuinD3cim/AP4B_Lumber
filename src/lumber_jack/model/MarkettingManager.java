@@ -13,6 +13,9 @@ public class MarkettingManager extends Employee {
 
     }
 
+    /**
+     * Upgrade the attractivity statistic of the marketing manager
+     */
     public void upgradeAttractivity() {
         try {
             if(attractivity + 1 > attractivityLimit) {

@@ -10,6 +10,12 @@ public class RessourceController {
     static ArrayList<Product> ressourceList;
     static RessourcePanel resourcePanel;
 
+
+    /**
+     * Constructor to initialize the resource controller 
+     * @param resourcePanel - RessourcePanel, the resource panel which it i linked with
+     */
+
     public RessourceController(RessourcePanel resourcePanel) 
     {
         RessourceController.resourcePanel = resourcePanel;
@@ -41,6 +47,13 @@ public class RessourceController {
             this.getRessource(n).changeStock(quantity);
         }
     }
+
+
+    /**
+     * Method to change a resource in a static way
+     * @param name - String representing the name of the target resources
+     * @param quantity - int representing the quantity to replace
+     */
 
     static public void changeRessourceStatic(String name, int quantity)
     {
