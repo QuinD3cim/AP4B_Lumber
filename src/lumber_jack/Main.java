@@ -13,7 +13,9 @@ import lumber_jack.controller.FactoryController;
 import lumber_jack.controller.ForestController;
 import lumber_jack.controller.MenuController;
 import lumber_jack.model.IndustryModel;
+import lumber_jack.view.MenuView;
 import lumber_jack.view.RessourcePanel;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -21,6 +23,9 @@ public class Main {
     }
 
     public Main() {
+        MenuView menu = new MenuView();
+        menu.TitleScreen();
+
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
         JFrame game = new JFrame("LumberJack");
