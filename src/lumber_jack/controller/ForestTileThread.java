@@ -72,7 +72,7 @@ public class ForestTileThread extends Thread {
         float totalEfficiency = 1;
         float totalSpeed = 0;
         for (Lumberjack l : lumberjacks) {
-            totalEfficiency *= (l.getEfficiency()+1);
+            totalEfficiency *= (l.getEfficiency());
             totalSpeed += (l.getSpeed());
         }
 
@@ -87,7 +87,7 @@ public class ForestTileThread extends Thread {
         float totalEfficiency = 1;
         float totalSpeed = 0;
         for (TreePlanter t : treeplanters) {
-            totalEfficiency *= (t.getEfficiency()+1);
+            totalEfficiency *= (t.getEfficiency());
             totalSpeed += (t.getSpeed());
         }
 

@@ -24,7 +24,7 @@ public class TreePlanter extends Employee{
         posX = 0;
         posY = 0;
         speed = 0.5f;
-        efficiency =0.5f;
+        efficiency =1f;
     }
     public float getEfficiency() {
         return efficiency;
