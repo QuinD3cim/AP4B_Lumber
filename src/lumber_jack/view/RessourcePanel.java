@@ -41,6 +41,7 @@ public class RessourcePanel extends JPanel{
         this.refreshView();
     }
 
+
     // Update the quantity of the ressource "name"
     // - String name : name of the ressource
     // - int quantity : quantity to add to the stock (can be negative)
@@ -59,6 +60,7 @@ public class RessourcePanel extends JPanel{
     }
 
     // Updates the Panel to show the updated values
+
     private void refreshView(){
         int n = 0;
         for(Component jc : this.getComponents())
