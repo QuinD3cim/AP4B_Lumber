@@ -40,13 +40,6 @@ public class Lumberjack extends Employee {
         return speed;
     }
 
-    public Lumberjack()
-    {
-        this.salary = 1.5f;
-        this.speed = 1.0f;
-        this.efficiency = 0.3f;
-    }
-
     public void levelUp(int level, int skill){
         if (skill == 0)
         {
