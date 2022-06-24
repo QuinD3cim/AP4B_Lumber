@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import lumber_jack.view.ForestPanel;
 import lumber_jack.model.ForestPlot;
+import lumber_jack.model.Lumberjack;
+import lumber_jack.model.TreePlanter;
 
 public class ForestController {
     private ForestPanel panel;
@@ -17,7 +19,12 @@ public class ForestController {
     }
     
     public void createPlot(JLabel plotButton, int x, int y) {
-        forestPlotGrid.add(new ForestPlot(plotButton, x,y));
+        ForestPlot newForestPlot = new ForestPlot(plotButton, x,y);
+        if (x == 0 && y == 0) {
+            newForestPlot.addLumberJackOnPlot(new Lumberjack());
+            newForestPlot.addTreePlanterOnPlot(new TreePlanter());
+        }
+        forestPlotGrid.add(newForestPlot);
     }
 
     public ForestPanel getPanel() {
